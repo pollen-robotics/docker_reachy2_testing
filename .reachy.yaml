@@ -1,0 +1,41 @@
+generation: 2023
+model: full_kit
+zuuu_version: 1.1
+serial_number: todo
+neck_orbita_zero:
+  top: 1.7270766198635101
+  middle: 0.725165493786335
+  bottom: 1.2497150525450706
+fan_trigger_temperature: 45
+camera_parameters:
+  left:
+    fx: 0.0
+    fy: 0.0
+    cx: 0.0
+    cy: 0.0
+    k1: 0.0
+    k2: 0.0
+    k3: 0.0
+    p1: 0.0
+    p2: 0.0
+  right:
+    fx: 0.0
+    fy: 0.0
+    cx: 0.0
+    cy: 0.0
+    k1: 0.0
+    k2: 0.0
+    k3: 0.0
+    p1: 0.0
+    p2: 0.0
+right_wrist_orbita_zero:
+  top: 0.5018094554543495
+  middle: 0.09122991235926747
+  bottom: 1.1696304380893707
+neck_config: /root/reachy_ws/src/orbita3d_control/orbita3d_description/config/neck_2.yaml
+right_wrist_config: /root/reachy_ws/src/orbita3d_control/orbita3d_description//config/right_wrist_2.yaml
+right_shoulder_config: /root/reachy_ws/src/orbita2d_control/orbita2d_description/config/right_shoulder_flipsky_2.yaml
+right_elbow_config: /root/reachy_ws/src/orbita2d_control/orbita2d_description/config/right_elbow_flipsky_2.yaml
+left_wrist_config: /root/reachy_ws/src/orbita3d_control/orbita3d_description/config/left_wrist_2.yaml
+left_shoulder_config: /root/reachy_ws/src/orbita2d_control/orbita2d_description/config/left_shoulder_flipsky_2.yaml
+left_elbow_config: /root/reachy_ws/src/orbita2d_control/orbita2d_description/config/left_elbow_flipsky_2.yaml

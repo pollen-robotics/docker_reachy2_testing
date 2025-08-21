@@ -1,0 +1,7 @@
+alias build="cd ~/reachy_ws ; colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release --cargo-args --release"
+alias builds="build;sb"
+alias cbuilds="cd ~/reachy_ws/ ; rm -rf build/ log/ install/; builds"
+alias reachelp="echo ros2 launch reachy_bringup reachy.launch.py fake:=true"
+alias go="ros2 launch reachy_bringup reachy.launch.py fake:=true start_sdk_server:=true"
+alias rpython="PYTHONSTARTUP=~/demo.py python3"
+alias switch_controllers="~/reachy_ws/src/reachy_v2_core/reachy_utils/reachy_utils/switch_controllers.sh"

@@ -1,0 +1,66 @@
+name: ci
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+  push:
+    branches:
+      - main
+      - develop
+    tags:
+      - 'v*'
+
+env:
+  IMAGE_NAME: template  # <-- change this name
+
+jobs:
+  docker:
+    runs-on: ubuntu-22.04
+    steps:  
+        - name: Install SSH_KEY VISION
+          uses: webfactory/ssh-agent@v0.8.0
+          with:
+            ssh-private-key: |
+              ${{ secrets.SSH_PRIVATE_KEY_REACHY2_CORE }}
+              ${{ secrets.SSH_PRIVATE_KEY_REACHY2_SDK }}
+              ${{ secrets.SSH_PRIVATE_KEY_ROS_POLLEN_TOOLBOX }}
+
+        - name: Checkout
+          uses: actions/checkout@v3
+        
+        - name: Set up Docker Buildx
+          uses: docker/setup-buildx-action@v3
+        
+        - name: Login to Docker Hub
+          uses: docker/login-action@v3
+          with:
+            username: ${{ secrets.DOCKERHUB_USERNAME }}
+            password: ${{ secrets.DOCKERHUB_TOKEN }}      
+
+        - name: Determine Image Tag
+          id: vars
+          run: |
+            if [[ "${{ github.ref }}" == "refs/heads/develop" ]]; then
+              echo "::set-output name=tag::develop"
+            elif [[ "${{ github.ref }}" == refs/tags/* ]]; then
+              echo "::set-output name=tag::${GITHUB_REF#refs/tags/}"
+            else
+              echo "::set-output name=tag::latest"
+            fi
+
+        - name: Pull sources
+          run: |
+            pip3 install vcstool
+            ./pull_sources.sh --shallow
+            chmod -R 775 src dev  
+
+        - name: Build (and push if on develop or main)
+          uses: docker/build-push-action@v5
+          with:
+            context: .
+            push: ${{ github.event_name == 'push' }}
+            tags: pollenrobotics/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.tag }}
+
+            
