@@ -6,12 +6,8 @@ services:
     environment:
       - ROS_DOMAIN_ID=$ROS_DOMAIN_ID
       - DISPLAY=$DISPLAY
-      - "RCUTILS_CONSOLE_OUTPUT_FORMAT=[{severity}]: {message}"
-      - REACHY2_CORE_SERVICE_FAKE=${REACHY2_CORE_SERVICE_FAKE:-false}
     volumes:
       - /dev:/dev
-      - $HOME/.reachy_config:/home/reachy/.reachy_config_override
-      - $HOME/.reachy.log:/home/reachy/.ros/log
     group_add:
       - audio
     # allow interprocess comunication to handle alsa audio concurrent access
@@ -19,5 +15,3 @@ services:
     device_cgroup_rules:
       - 'c 189:* rmw' # rules for usb cam
     network_mode: "host"
-    # entrypoint: /package/launch.sh
-    # command: start_rviz:=true start_sdk_server:=true
