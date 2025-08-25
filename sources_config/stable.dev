@@ -1,0 +1,9 @@
+repositories:
+  PyVESC:
+    type: git
+    url: git@github.com:pollen-robotics/PyVESC.git
+    version: 1.0.9
+  reachy2-testing:
+    type: git
+    url: git@github.com:pollen-robotics/reachy2-testing.git
+    version: 1-add-mobile-base-testing
