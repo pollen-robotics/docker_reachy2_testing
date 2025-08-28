@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Mobile Base Testing GUI
+Comment=Launch mobile base testing GUI
+Exec=/bin/bash -c 'cd $HOME/dev_docker/docker_reachy2_testing && docker compose -f mobile_base_compose.yaml up'
+Icon=docker
+Terminal=true
+Type=Application
+Categories=Development
