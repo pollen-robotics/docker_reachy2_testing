@@ -7,6 +7,7 @@ services:
       - ROS_DOMAIN_ID=$ROS_DOMAIN_ID
       - DISPLAY=$DISPLAY
     volumes:
+      - $HOME/.reachy_config:/home/reachy/.reachy_config_override
       - /dev:/dev
     group_add:
       - audio
