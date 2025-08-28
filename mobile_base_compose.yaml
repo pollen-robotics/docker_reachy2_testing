@@ -1,0 +1,20 @@
+services:
+  testing:
+    image: pollenrobotics/reachy2_testing:latest
+    container_name: reachy2_testing
+    privileged: true
+    environment:
+      - ROS_DOMAIN_ID=$ROS_DOMAIN_ID
+      - DISPLAY=$DISPLAY
+    volumes:
+      - /dev:/dev
+    group_add:
+      - audio
+    # allow interprocess comunication to handle alsa audio concurrent access
+    ipc: host
+    device_cgroup_rules:
+      - 'c 189:* rmw' # rules for usb cam
+    network_mode: "host"
+    working_dir: /home/reachy/dev/reachy2-testing
+    entrypoint: ["/home/reachy/.local/bin/uv", "run"]
+    command: ["mobile_base_testing/mobile_base_gui.py"]
