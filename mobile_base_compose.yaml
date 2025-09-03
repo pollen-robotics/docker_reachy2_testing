@@ -8,6 +8,9 @@ services:
       - DISPLAY=$DISPLAY
     volumes:
       - /dev:/dev
+      # - package:/package
+      - $HOME/.reachy_config:/home/reachy/.reachy_config_override
+      - $HOME/.reachy.log:/home/reachy/.ros/log
     group_add:
       - audio
     # allow interprocess comunication to handle alsa audio concurrent access
@@ -15,6 +18,4 @@ services:
     device_cgroup_rules:
       - 'c 189:* rmw' # rules for usb cam
     network_mode: "host"
-    working_dir: /home/reachy/dev/reachy2-testing
-    entrypoint: ["/home/reachy/.local/bin/uv", "run"]
-    command: ["mobile_base_testing/mobile_base_gui.py"]
+    entrypoint: ["/package/launch_mb_test.sh"]

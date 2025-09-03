@@ -1,5 +1,7 @@
 FROM pollenrobotics/reachy2_core:1.7.5.8_deploy
 
+COPY package /package
+
 RUN sudo apt-get -y update
 RUN sudo apt --fix-broken -y install
 RUN sudo apt-get install -y libxcb-cursor0
