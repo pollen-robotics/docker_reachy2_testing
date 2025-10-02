@@ -11,3 +11,7 @@ RUN git clone https://github.com/pollen-robotics/reachy2-testing.git
 
 # Install uv
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+
+
+RUN mkdir -p /home/reachy/.ssh && ssh-keyscan github.com >> /home/reachy/.ssh/known_hosts
+RUN --mount=type=ssh,id=default,uid=1000 git clone git@github.com:pollen-robotics/docker_reachy2_core.git 

@@ -1,3 +1,7 @@
+docker build --ssh default  -t toto . --no-cache
+
+
+
 # Docker template
 
 Template project for Pollen Robotics docker images. It provides pre-configured tools and guidelines for making your own image.
