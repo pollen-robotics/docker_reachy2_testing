@@ -6,7 +6,7 @@ COPY package /package
 #ENV GIT_SSH_COMMAND='ssh -Tvv'
 #USER reachy
 
-RUN mkdir -p /home/reachy/.ssh && ssh-keyscan github.com >> /home/reachy/.ssh/known_hosts
+# RUN mkdir -p /home/reachy/.ssh && ssh-keyscan github.com >> /home/reachy/.ssh/known_hosts
 # RUN --mount=type=ssh,id=default,uid=1000 git clone git@github.com:pollen-robotics/docker_reachy2_core.git
 
 RUN sudo apt-get -y update
@@ -16,12 +16,12 @@ RUN sudo apt-get install -y mercurial
 RUN sudo apt-get install -y linux-source
 RUN sudo apt-get install -y linux-headers-$(uname -r)
 
-WORKDIR $HOME/dev/poulpe_ethercat_controller
-RUN git remote set-url origin git@github.com:pollen-robotics/poulpe_ethercat_controller.git
+#WORKDIR $HOME/dev/poulpe_ethercat_controller
+#RUN git remote set-url origin git@github.com:pollen-robotics/poulpe_ethercat_controller.git
 # RUN --mount=type=ssh,id=default,uid=1000 git fetch
 # RUN --mount=type=ssh,id=default,uid=1000 git checkout develop
-RUN git fetch
-RUN git checkout develop
+#RUN git fetch
+#RUN git checkout develop
 
 
 #RUN --mount=type=ssh git fetch
@@ -30,7 +30,7 @@ RUN git checkout develop
 WORKDIR $HOME/dev
 RUN git clone -b orbita_bench https://github.com/pollen-robotics/reachy2-testing.git
 RUN mv poulpe_ethercat_controller poulpe_ethercat_controller.bak
-#RUN git clone -b develop https://github.com/pollen-robotics/poulpe_ethercat_controller.git
+RUN git clone -b develop https://github.com/pollen-robotics/poulpe_ethercat_controller.git
 RUN git clone https://github.com/pollen-robotics/firmware_Poulpe.git
 RUN git clone https://github.com/pollen-robotics/bootloader_Poulpe.git
 RUN git clone https://github.com/pollen-robotics/orbita3d_control.git
