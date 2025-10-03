@@ -18,8 +18,11 @@ RUN sudo apt-get install -y linux-headers-$(uname -r)
 
 WORKDIR $HOME/dev/poulpe_ethercat_controller
 RUN git remote set-url origin git@github.com:pollen-robotics/poulpe_ethercat_controller.git
-RUN --mount=type=ssh,id=default,uid=1000 git fetch
-RUN --mount=type=ssh,id=default,uid=1000 git checkout develop
+# RUN --mount=type=ssh,id=default,uid=1000 git fetch
+# RUN --mount=type=ssh,id=default,uid=1000 git checkout develop
+RUN git fetch
+RUN git checkout develop
+
 
 #RUN --mount=type=ssh git fetch
 #RUN --mount=type=ssh git checkout -b develop
